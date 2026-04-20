@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282c34;
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+        .clock-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+        .clock {
+            background: #3c4043;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+        p {
+            font-size: 36px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock-container">
+        <div class="clock">
+            <h2>New York</h2>
+            <p id="newYorkTime"></p>
+        </div>
+        <div class="clock">
+            <h2>London</h2>
+            <p id="londonTime"></p>
+        </div>
+        <div class="clock">
+            <h2>Tokyo</h2>
+            <p id="tokyoTime"></p>
+        </div>
+        <div class="clock">
+            <h2>Sydney</h2>
+            <p id="sydneyTime"></p>
+        </div>
+        <div class="clock">
+            <h2>Los Angeles</h2>
+            <p id="laTime"></p>
+        </div>
+    </div>
+    <script>
+        function updateClocks() {
+            const options = { timeZone: '', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            document.getElementById('newYorkTime').textContent = new Intl.DateTimeFormat('en-US', {...options, timeZone: 'America/New_York'}).format(new Date());
+            document.getElementById('londonTime').textContent = new Intl.DateTimeFormat('en-GB', {...options, timeZone: 'Europe/London'}).format(new Date());
+            document.getElementById('tokyoTime').textContent = new Intl.DateTimeFormat('ja-JP', {...options, timeZone: 'Asia/Tokyo'}).format(new Date());
+            document.getElementById('sydneyTime').textContent = new Intl.DateTimeFormat('en-AU', {...options, timeZone: 'Australia/Sydney'}).format(new Date());
+            document.getElementById('laTime').textContent = new Intl.DateTimeFormat('en-US', {...options, timeZone: 'America/Los_Angeles'}).format(new Date());
+        }
+        setInterval(updateClocks, 1000);
+        updateClocks();
+    </script>
+</body>
+</html>
